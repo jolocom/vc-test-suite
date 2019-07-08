@@ -7,10 +7,9 @@ const util = require('util');
 
 const exec = util.promisify(require('child_process').exec);
 
-async function generate(file, options) {
-  options = options || {};
-  const {stdout, stderr} = await exec(options.generator + ' ' +
-    options.generatorOptions + ' ' + path.join(__dirname, 'input', file));
+async function generate(file, {generator, generatorOptions} = {}) {
+  const inputsPath = './test/vc-data-model-1.0/input'
+  const {stdout, stderr} = await exec(`${generator} ${generatorOptions} ${inputsPath}/${file}`);
 
   if(stderr) {
     throw new Error(stderr);

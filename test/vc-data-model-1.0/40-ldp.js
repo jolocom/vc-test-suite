@@ -24,12 +24,12 @@ describe('Linked Data Proofs (optional)', function() {
     });
 
     it('MUST be present', async function() {
-      const doc = await util.generate('example-5.jsonld', generatorOptions);
+      const doc = await util.generate('example-1.json', generatorOptions);
       expect(Array.isArray(doc.proof) || typeof doc.proof === 'object');
     });
 
     it('MUST include specific method using the type property', async function() {
-      const doc = await util.generate('example-5.jsonld', generatorOptions);
+      const doc = await util.generate('example-1.json', generatorOptions);
 
       if (Array.isArray(doc.proof)) {
         doc.proof[0].should.have.property('type');
